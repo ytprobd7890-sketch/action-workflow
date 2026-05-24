@@ -1,13 +1,30 @@
-name: 🔥 Ultimate Firmware Extractor
+name: 🔥 Ultimate Firmware Extractor Pro
 
 on:
   workflow_dispatch:
     inputs:
       firmware_url:
-        description: "Firmware URL (optional)"
+        description: "Direct firmware URL"
         required: false
-      enable_entropy:
-        description: "Enable entropy scan"
+        default: ""
+
+      deep_scan:
+        description: "Enable deep recursive extraction"
+        required: false
+        default: "true"
+
+      entropy_scan:
+        description: "Enable entropy analysis"
+        required: false
+        default: "true"
+
+      secret_scan:
+        description: "Enable password/secret hunting"
+        required: false
+        default: "true"
+
+      webui_extract:
+        description: "Extract web panels"
         required: false
         default: "true"
 
@@ -16,17 +33,18 @@ on:
       - main
 
 jobs:
-  extract:
+  firmware-analysis:
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
 
     steps:
-    - name: 🚀 Checkout Repo
+
+    - name: 🚀 Checkout Repository
       uses: actions/checkout@v4
 
-    - name: 🧰 Install Powerful Tools
+    - name: 🧰 Install Extraction Tools
       run: |
         sudo apt update
 
@@ -38,7 +56,6 @@ jobs:
           bzip2 \
           tar \
           xz-utils \
-          lzma \
           unzip \
           wget \
           curl \
@@ -51,74 +68,120 @@ jobs:
           cpio \
           arj \
           cabextract \
-          cramfsprogs \
           default-jdk \
           sleuthkit \
           mtd-utils \
-          simg2img \
           android-sdk-libsparse-utils \
-          python3-pip
+          cramfsswap \
+          python3-pip \
+          python3-venv \
+          build-essential \
+          liblzma-dev \
+          liblzo2-dev \
+          zlib1g-dev \
+          libacl1-dev \
+          device-tree-compiler \
+          qemu-user-static \
+          qemu-system-mips
 
-        pip3 install \
+        python3 -m pip install --break-system-packages \
           ubi_reader \
           jefferson \
           pycryptodome \
           unblob
 
-    - name: 🛠️ Install sasquatch
+    - name: 🛠️ Install Sasquatch
       run: |
         git clone https://github.com/devttys0/sasquatch.git
+
         cd sasquatch
-        ./build.sh
+
+        ./build.sh || true
+
+        sudo cp sasquatch /usr/local/bin/ || true
 
     - name: 🛠️ Install Firmware Mod Kit
       run: |
         git clone https://github.com/rampageX/firmware-mod-kit.git
 
+    - name: 📂 Prepare Workspace
+      run: |
+        mkdir -p firmware
+        mkdir -p extracted
+        mkdir -p reports
+        mkdir -p filesystems
+        mkdir -p webui
+        mkdir -p analysis
+
     - name: 📥 Download Firmware
+      if: github.event.inputs.firmware_url != ''
       run: |
-        mkdir firmware
+        cd firmware
 
-        if [ ! -z "${{ github.event.inputs.firmware_url }}" ]; then
-          cd firmware
-          wget "${{ github.event.inputs.firmware_url }}" -O firmware.bin
-        fi
+        wget "${{ github.event.inputs.firmware_url }}" -O firmware.bin
 
-    - name: 📂 Detect Firmware
+    - name: 📂 Detect Firmware Files
       run: |
-        echo "📦 Firmware Files:"
-        find firmware -type f
+        echo "## 📦 Firmware Files" >> $GITHUB_STEP_SUMMARY
 
-    - name: 🔍 Deep Binwalk Extraction
+        find firmware -type f | tee firmware_list.txt
+
+        cat firmware_list.txt >> $GITHUB_STEP_SUMMARY
+
+    - name: 🔍 Firmware Information
       run: |
-        mkdir extracted
-
         find firmware -type f | while read FW; do
-          echo "🔥 Extracting $FW"
+
+          NAME=$(basename "$FW")
+
+          echo "========== $NAME =========="
+
+          file "$FW" | tee -a reports/file_info.txt
+
+          sha256sum "$FW" | tee -a reports/hashes.txt
+
+          md5sum "$FW" | tee -a reports/hashes.txt
+
+          strings "$FW" | head -500 > "reports/${NAME}_strings.txt"
+
+        done
+
+    - name: 🔥 Deep Binwalk Extraction
+      if: github.event.inputs.deep_scan == 'true'
+      run: |
+        find firmware -type f | while read FW; do
+
+          echo "🔥 Extracting: $FW"
 
           binwalk \
             --run-as=root \
             -eM \
-            "$FW"
+            "$FW" || true
 
-          mv *_*.extracted extracted/ || true
         done
 
-    - name: 🧠 Entropy Scan
-      if: github.event.inputs.enable_entropy == 'true'
-      run: |
-        mkdir -p reports
+        find . -type d -name "*.extracted" | while read DIR; do
 
+          NAME=$(basename "$DIR")
+
+          mv "$DIR" "extracted/$NAME" || true
+
+        done
+
+    - name: 🧠 Entropy Analysis
+      if: github.event.inputs.entropy_scan == 'true'
+      run: |
         find firmware -type f | while read FW; do
+
           NAME=$(basename "$FW")
 
-          binwalk -E "$FW" > "reports/${NAME}_entropy.txt"
+          binwalk -E "$FW" \
+            > "reports/${NAME}_entropy.txt" || true
+
         done
 
-    - name: 🔎 File System Hunting
+    - name: 🔎 Extract File Systems
       run: |
-        mkdir -p filesystems
-
         find extracted -type f | while read FILE; do
 
           TYPE=$(file "$FILE")
@@ -126,87 +189,145 @@ jobs:
           echo "$TYPE"
 
           if echo "$TYPE" | grep -qi squashfs; then
-            mkdir -p filesystems/squashfs
+
+            NAME=$(basename "$FILE")
+
+            mkdir -p "filesystems/squashfs_$NAME"
 
             unsquashfs \
-              -d "filesystems/squashfs/$(basename "$FILE")" \
+              -d "filesystems/squashfs_$NAME" \
               "$FILE" || true
           fi
 
           if echo "$TYPE" | grep -qi cramfs; then
-            mkdir -p filesystems/cramfs
 
-            cramfsck -x \
-              "filesystems/cramfs/$(basename "$FILE")" \
+            NAME=$(basename "$FILE")
+
+            mkdir -p "filesystems/cramfs_$NAME"
+
+            cramfsck \
+              -x "filesystems/cramfs_$NAME" \
               "$FILE" || true
           fi
 
           if echo "$TYPE" | grep -qi ubi; then
+
             mkdir -p filesystems/ubi
 
             ubireader_extract_files \
               -o filesystems/ubi \
               "$FILE" || true
           fi
+
+          if echo "$TYPE" | grep -qi ext4; then
+
+            NAME=$(basename "$FILE")
+
+            mkdir -p "filesystems/ext4_$NAME"
+
+            sudo mount -o loop "$FILE" "filesystems/ext4_$NAME" || true
+          fi
+
         done
 
-    - name: 🔐 Search Passwords & Secrets
+    - name: 🌐 Extract Web UI Panels
+      if: github.event.inputs.webui_extract == 'true'
       run: |
-        mkdir -p reports
-
-        grep -RinaE \
-        "password|passwd|admin|root|telnet|dropbear|ssh|token|secret|key" \
-        extracted \
-        > reports/secrets.txt || true
-
-    - name: 🌐 Extract Web Panels
-      run: |
-        mkdir -p webui
-
         find filesystems -type d | while read DIR; do
 
           if [ -d "$DIR/www" ]; then
-            cp -r "$DIR/www" "webui/$(basename "$DIR")"
+
+            NAME=$(basename "$DIR")
+
+            cp -r "$DIR/www" "webui/${NAME}_www" || true
           fi
 
           if [ -d "$DIR/web" ]; then
-            cp -r "$DIR/web" "webui/$(basename "$DIR")"
+
+            NAME=$(basename "$DIR")
+
+            cp -r "$DIR/web" "webui/${NAME}_web" || true
+          fi
+
+          if [ -d "$DIR/usr/www" ]; then
+
+            NAME=$(basename "$DIR")
+
+            cp -r "$DIR/usr/www" "webui/${NAME}_usr_www" || true
           fi
 
         done
 
+    - name: 🔐 Hunt Passwords & Secrets
+      if: github.event.inputs.secret_scan == 'true'
+      run: |
+        grep -RinaE \
+        "password|passwd|admin|root|telnet|dropbear|ssh|secret|token|api|key" \
+        extracted \
+        filesystems \
+        > reports/secrets.txt || true
+
     - name: 🧬 Detect Architecture
       run: |
-        mkdir -p reports
-
         find extracted -type f | while read FILE; do
+
           file "$FILE" >> reports/architectures.txt
+
         done
 
-    - name: 📊 Generate Firmware Report
+    - name: 🔥 ELF Binary Detection
       run: |
-        mkdir -p reports
+        find extracted -type f | while read FILE; do
 
+          if file "$FILE" | grep -qi ELF; then
+
+            echo "$FILE" >> reports/elf_binaries.txt
+
+          fi
+
+        done
+
+    - name: 📜 CGI Script Detection
+      run: |
+        find filesystems -type f | grep -Ei \
+        "\.cgi$|\.sh$|\.php$|\.pl$" \
+        > reports/cgi_scripts.txt || true
+
+    - name: 🌍 URL & IP Extraction
+      run: |
+        strings firmware/* | grep -Eo \
+        "https?://[^ ]+|([0-9]{1,3}\.){3}[0-9]{1,3}" \
+        > reports/network_indicators.txt || true
+
+    - name: 📊 Generate Master Report
+      run: |
         {
-          echo "# 🔥 Firmware Extraction Report"
+          echo "# 🔥 Ultimate Firmware Analysis Report"
           echo ""
-          echo "## 📂 Extracted Files"
+          echo "## 📂 Extracted Directories"
           find extracted
-          echo ""
-          echo "## 🌐 Web UI"
-          find webui
           echo ""
           echo "## 📦 File Systems"
           find filesystems
+          echo ""
+          echo "## 🌐 Web Panels"
+          find webui
+          echo ""
+          echo "## 🔥 ELF Binaries"
+          cat reports/elf_binaries.txt || true
+          echo ""
+          echo "## 📜 CGI Scripts"
+          cat reports/cgi_scripts.txt || true
         } > reports/report.md
 
-    - name: 🗜️ Compress Everything
+    - name: 🗜️ Compress Analysis
       run: |
         7z a firmware_analysis.7z \
           extracted \
           filesystems \
           webui \
-          reports
+          reports \
+          analysis || true
 
     - name: 📤 Upload Artifacts
       uses: actions/upload-artifact@v4
@@ -215,8 +336,8 @@ jobs:
         path: |
           firmware_analysis.7z
           reports
-          webui
           filesystems
+          webui
 
     - name: 🚀 Auto Commit Reports
       run: |
@@ -225,20 +346,23 @@ jobs:
 
         git add .
 
-        git commit -m "🔥 Auto firmware extraction report" || true
+        git commit -m "🔥 Auto firmware analysis report" || true
 
-        git push
+        git push || true
 
     - name: 🎨 Fancy Summary
       run: |
-        echo "## 🔥 Firmware Extraction Complete" >> $GITHUB_STEP_SUMMARY
+        echo "# 🔥 Firmware Analysis Completed" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### ✅ Features Used" >> $GITHUB_STEP_SUMMARY
-        echo "- Binwalk Recursive Extraction" >> $GITHUB_STEP_SUMMARY
+        echo "## ✅ Features Enabled" >> $GITHUB_STEP_SUMMARY
+        echo "- Recursive Binwalk Extraction" >> $GITHUB_STEP_SUMMARY
         echo "- SquashFS Extraction" >> $GITHUB_STEP_SUMMARY
         echo "- UBI Extraction" >> $GITHUB_STEP_SUMMARY
+        echo "- Ext4 Detection" >> $GITHUB_STEP_SUMMARY
         echo "- Secret Hunting" >> $GITHUB_STEP_SUMMARY
-        echo "- Web Panel Extraction" >> $GITHUB_STEP_SUMMARY
+        echo "- Web UI Extraction" >> $GITHUB_STEP_SUMMARY
+        echo "- ELF Binary Detection" >> $GITHUB_STEP_SUMMARY
+        echo "- CGI Detection" >> $GITHUB_STEP_SUMMARY
         echo "- Entropy Analysis" >> $GITHUB_STEP_SUMMARY
-        echo "- Architecture Detection" >> $GITHUB_STEP_SUMMARY
-        echo "- Auto Artifact Upload" >> $GITHUB_STEP_SUMMARY
+        echo "- Network Indicator Scan" >> $GITHUB_STEP_SUMMARY
+        echo "- Artifact Upload" >> $GITHUB_STEP_SUMMARY
