@@ -1,0 +1,116 @@
+name: Pro Video Fetcher
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: "Public category/label page or post URL"
+        required: true
+        type: string
+      download:
+        description: "Download public direct media URLs when available"
+        required: false
+        default: false
+        type: boolean
+      workers:
+        description: "Parallel workers (1-8)"
+        required: false
+        default: "4"
+        type: string
+  schedule:
+    # Daily at 02:30 UTC. Change or remove this block if not needed.
+    - cron: "30 2 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pro-video-fetcher
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+  DEFAULT_SOURCE_URL: "https://www.picview.online/search/label/%E0%A6%B8%E0%A6%BE%E0%A6%A4%20%E0%A6%AA%E0%A6%BE%E0%A6%95%E0%A7%87%20%E0%A6%AC%E0%A6%BE%E0%A6%81%E0%A6%A7%E0%A6%BE"
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install tools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade yt-dlp
+
+      - name: Resolve inputs
+        id: inputs
+        shell: bash
+        env:
+          EVENT_SOURCE: ${{ inputs.source_url }}
+          EVENT_DOWNLOAD: ${{ inputs.download }}
+          EVENT_WORKERS: ${{ inputs.workers }}
+        run: |
+          source_url="${EVENT_SOURCE:-$DEFAULT_SOURCE_URL}"
+          download="${EVENT_DOWNLOAD:-false}"
+          workers="${EVENT_WORKERS:-4}"
+
+          # Keep worker count within the script's safe range.
+          if ! [[ "$workers" =~ ^[1-8]$ ]]; then workers=4; fi
+
+          {
+            echo "source_url=$source_url"
+            echo "download=$download"
+            echo "workers=$workers"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Run batch extractor
+        env:
+          SOURCE_URL: ${{ steps.inputs.outputs.source_url }}
+          DOWNLOAD: ${{ steps.inputs.outputs.download }}
+          WORKERS: ${{ steps.inputs.outputs.workers }}
+        shell: bash
+        run: |
+          args=("$SOURCE_URL" "--workers" "$WORKERS" "--json" "video_results.json")
+          if [[ "$DOWNLOAD" == "true" ]]; then
+            args+=("--download" "--out" "downloads")
+          fi
+          python pro_video_fetcher.py "${args[@]}"
+
+      - name: Create run summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Pro Video Fetcher"
+            echo ""
+            echo "- Source: \\`${{ steps.inputs.outputs.source_url }}\\`"
+            echo "- Download mode: \\`${{ steps.inputs.outputs.download }}\\`"
+            echo "- Workers: \\`${{ steps.inputs.outputs.workers }}\\`"
+            if [[ -f video_results.json ]]; then
+              echo "- Report: generated successfully"
+              echo "- Records: $(python -c 'import json; print(len(json.load(open("video_results.json", encoding="utf-8"))))')"
+            else
+              echo "- Report: not generated"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report and downloads
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-fetcher-${{ github.run_number }}
+          path: |
+            video_results.json
+            downloads/**
+          if-no-files-found: warn
+          retention-days: 14
