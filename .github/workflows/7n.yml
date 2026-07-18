@@ -60,9 +60,11 @@ jobs:
           EVENT_WORKERS: ${{ inputs.workers }}
         run: |
           source_url="${EVENT_SOURCE:-$DEFAULT_SOURCE_URL}"
-          # Accept either a raw URL or Markdown link pasted into the input.
-          if [[ "$source_url" =~ ^\[.*\]\((https?://[^)]+)\)$ ]]; then
-            source_url="${BASH_REMATCH[1]}"
+          # Accept either a raw URL or a Markdown link pasted into the input.
+          # Use sed here because Bash =~ treats parentheses specially.
+          cleaned_url="$(printf '%s' "$source_url" | sed -nE 's/^\[[^]]+\]\((https?:\/\/[^)]+)\)$/\1/p')"
+          if [[ -n "$cleaned_url" ]]; then
+            source_url="$cleaned_url"
           fi
           download="${EVENT_DOWNLOAD:-false}"
           workers="${EVENT_WORKERS:-4}"
