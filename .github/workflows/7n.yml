@@ -7,22 +7,22 @@ on:
         description: "Public category/label page or post URL"
         required: true
         type: string
+        default: "https://www.picview.online/search/label/%E0%A6%B8%E0%A6%BE%E0%A6%A4%20%E0%A6%AA%E0%A6%BE%E0%A6%95%E0%A7%87%20%E0%A6%AC%E0%A6%BE%E0%A6%81%E0%A6%A7%E0%A6%BE"
       download:
         description: "Download public direct media URLs when available"
-        required: false
+        required: true
         default: false
         type: boolean
       workers:
-        description: "Parallel workers (1-8)"
-        required: false
+        description: "Parallel workers: 1-8"
+        required: true
         default: "4"
         type: string
   schedule:
-    # Daily at 02:30 UTC. Change or remove this block if not needed.
     - cron: "30 2 * * *"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: pro-video-fetcher
@@ -34,78 +34,114 @@ env:
 
 jobs:
   fetch:
+    name: Scan, extract, and publish catalogue
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Set up Python
+      - name: Set up Python 3.12
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
-      - name: Install tools
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install --upgrade yt-dlp
+      - name: Install optional downloader
+        run: python -m pip install --disable-pip-version-check --upgrade yt-dlp
 
-      - name: Resolve inputs
-        id: inputs
+      - name: Resolve and validate inputs
+        id: config
         shell: bash
         env:
-          EVENT_SOURCE: ${{ inputs.source_url }}
-          EVENT_DOWNLOAD: ${{ inputs.download }}
-          EVENT_WORKERS: ${{ inputs.workers }}
+          INPUT_URL: ${{ inputs.source_url }}
+          INPUT_DOWNLOAD: ${{ inputs.download }}
+          INPUT_WORKERS: ${{ inputs.workers }}
         run: |
-          source_url="${EVENT_SOURCE:-$DEFAULT_SOURCE_URL}"
-          # Accept either a raw URL or a Markdown link pasted into the input.
-          # Use sed here because Bash =~ treats parentheses specially.
-          cleaned_url="$(printf '%s' "$source_url" | sed -nE 's/^\[[^]]+\]\((https?:\/\/[^)]+)\)$/\1/p')"
-          if [[ -n "$cleaned_url" ]]; then
-            source_url="$cleaned_url"
-          fi
-          download="${EVENT_DOWNLOAD:-false}"
-          workers="${EVENT_WORKERS:-4}"
+          set -euo pipefail
 
-          # Keep worker count within the script's safe range.
+          source_url="${INPUT_URL:-$DEFAULT_SOURCE_URL}"
+
+          # Accept a raw URL or a Markdown link pasted into the input.
+          cleaned_url="$(printf '%s' "$source_url" | sed -nE 's/^\[[^]]+\]\((https?:\/\/[^)]+)\)$/\1/p')"
+          if [[ -n "$cleaned_url" ]]; then source_url="$cleaned_url"; fi
+
+          if [[ ! "$source_url" =~ ^https?:// ]]; then
+            echo "Invalid source URL: $source_url" >&2
+            exit 1
+          fi
+
+          workers="${INPUT_WORKERS:-4}"
           if ! [[ "$workers" =~ ^[1-8]$ ]]; then workers=4; fi
+
+          download="${INPUT_DOWNLOAD:-false}"
+          if [[ "$download" != "true" ]]; then download=false; fi
 
           {
             echo "source_url=$source_url"
-            echo "download=$download"
             echo "workers=$workers"
+            echo "download=$download"
           } >> "$GITHUB_OUTPUT"
 
-      - name: Run batch extractor
+      - name: Run extractor
         env:
-          SOURCE_URL: ${{ steps.inputs.outputs.source_url }}
-          DOWNLOAD: ${{ steps.inputs.outputs.download }}
-          WORKERS: ${{ steps.inputs.outputs.workers }}
+          SOURCE_URL: ${{ steps.config.outputs.source_url }}
+          WORKERS: ${{ steps.config.outputs.workers }}
+          DOWNLOAD: ${{ steps.config.outputs.download }}
         shell: bash
         run: |
+          set -euo pipefail
           args=("$SOURCE_URL" "--workers" "$WORKERS" "--json" "video_results.json")
           if [[ "$DOWNLOAD" == "true" ]]; then
             args+=("--download" "--out" "downloads")
           fi
           python ./pro_video_fetcher.py "${args[@]}"
 
-      - name: Create run summary
+      - name: Validate catalogue report
+        run: |
+          test -s video_results.json
+          python - <<'PY'
+          import json
+          with open("video_results.json", encoding="utf-8") as f:
+              data = json.load(f)
+          if not isinstance(data, list):
+              raise SystemExit("video_results.json must contain a JSON list")
+          print(f"Validated {len(data)} episode records")
+          PY
+
+      - name: Publish video_results.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add video_results.json
+          if git diff --cached --quiet; then
+            echo "No catalogue changes to commit."
+          else
+            git commit -m "Update video catalogue"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
+
+      - name: Write run summary
         if: always()
+        env:
+          SOURCE_URL: ${{ steps.config.outputs.source_url }}
+          DOWNLOAD: ${{ steps.config.outputs.download }}
+          WORKERS: ${{ steps.config.outputs.workers }}
         shell: bash
         run: |
           {
             echo "## Pro Video Fetcher"
             echo ""
-            echo "- Source: \\`${{ steps.inputs.outputs.source_url }}\\`"
-            echo "- Download mode: \\`${{ steps.inputs.outputs.download }}\\`"
-            echo "- Workers: \\`${{ steps.inputs.outputs.workers }}\\`"
+            echo "- Source: \\`$SOURCE_URL\\`"
+            echo "- Download mode: \\`$DOWNLOAD\\`"
+            echo "- Workers: \\`$WORKERS\\`"
             if [[ -f video_results.json ]]; then
-              echo "- Report: generated successfully"
+              echo "- Report: \\`video_results.json\\`"
               echo "- Records: $(python -c 'import json; print(len(json.load(open("video_results.json", encoding="utf-8"))))')"
-            else
-              echo "- Report: not generated"
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
