@@ -60,6 +60,10 @@ jobs:
           EVENT_WORKERS: ${{ inputs.workers }}
         run: |
           source_url="${EVENT_SOURCE:-$DEFAULT_SOURCE_URL}"
+          # Accept either a raw URL or Markdown link pasted into the input.
+          if [[ "$source_url" =~ ^\[.*\]\((https?://[^)]+)\)$ ]]; then
+            source_url="${BASH_REMATCH[1]}"
+          fi
           download="${EVENT_DOWNLOAD:-false}"
           workers="${EVENT_WORKERS:-4}"
 
@@ -83,7 +87,7 @@ jobs:
           if [[ "$DOWNLOAD" == "true" ]]; then
             args+=("--download" "--out" "downloads")
           fi
-          python pro_video_fetcher.py "${args[@]}"
+          python ./pro_video_fetcher.py "${args[@]}"
 
       - name: Create run summary
         if: always()
