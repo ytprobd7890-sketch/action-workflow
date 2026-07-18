@@ -44,13 +44,25 @@ def inspect_page(url):
     text, final = get(url)
     title_m = re.search(r"<title[^>]*>(.*?)</title>", text, re.I | re.S)
     title = clean(title_m.group(1)) if title_m else ""
+    thumb = None
+    for pattern in (
+        r'''<meta[^>]+(?:property|name)=["'](?:og:image|twitter:image)["'][^>]+content=["']([^"']+)''',
+        r'''<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["'](?:og:image|twitter:image)["']''',
+        r'''<img[^>]+(?:src|data-src)=["']([^"']+)''',
+    ):
+        m = re.search(pattern, text, re.I | re.S)
+        if m:
+            candidate = html.unescape(m.group(1)).replace("&amp;", "&")
+            if candidate.startswith(("http://", "https://", "/")):
+                thumb = urljoin(final, candidate)
+                break
     frames = [html.unescape(x).replace("&amp;", "&") for x in re.findall(r'''<iframe\b[^>]*?src=["']([^"']+)''', text, re.I)]
     direct = re.findall(r'''https?://[^"'\s<>]+\.(?:mp4|webm|m3u8)(?:\?[^"'\s<>]*)?''', text, re.I)
     embeds = []
     for x in frames:
         if any(k in x.lower() for k in ("blogger.com/video", "rumble.com", "youtube.com", "youtu.be", "vimeo.com")):
             if x not in embeds: embeds.append(x)
-    return {"page_url": final, "title": title, "direct_urls": list(dict.fromkeys(direct)), "embed_urls": embeds}
+    return {"page_url": final, "title": title, "thumbnail": thumb, "direct_urls": list(dict.fromkeys(direct)), "embed_urls": embeds}
 
 def download(url, folder, title, n):
     exe = shutil_which("yt-dlp")
