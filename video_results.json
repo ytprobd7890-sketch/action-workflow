@@ -1,27 +1,25 @@
 [
   {
-    "number": 1,
-    "page_url": "https://www.picview.online/2026/07/05_3.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
-    "direct_urls": [],
-    "embed_urls": []
-  },
-  {
-    "number": 2,
     "page_url": "https://www.picview.online/2026/07/06_2.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 06 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhc87JWqjSTPWKAMcX6khBAWg1bf5M-BIn382cL7AE78wmyrgrw4ugPXFD0lDvytFwPRx62wEpeHIuerisnDX2-Qh61LP4qcbTWull3IYyWIThfs1gfl82s6Cy6HxxvZPHl8BIujHQBECpHVd2mCU-Zsx3eFKlXpTfXfVLyiVAvwgGOgvGJCqPBo_3pkWlc/w1600-h1600-p-k-no-nu/1002123529.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dwsrbGLgIV_UNGXSlC5pQqtp4wTarl4olos-SLsJpncBxS-J4Xaf-LzIL51mZX4H_cV7QgWTIX4WY7LSo8TlEgKDw95GoKEs77t-_zw8HzugdBBpmPZgK2qc3PqfK1iWLFWmwi8&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 1
   },
   {
-    "number": 3,
     "page_url": "https://www.picview.online/2026/07/07_70.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 07 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhe0HWo0IRfmaVo1e_5_dbZq0RznztWmhkSBqAcCbpnPtZPTKu-lhQwa-g6MEHd2LGPqY4Tkle4hhZjBI8Reu7hh7JyVeukeVW5590CbM_QyDdFNf1yF0EU0FWFU6jJk1HGwD6tckgaX6anU5wHOO8FQlejOdGv0exNdK8FB4U7mBE97b88plBSPunSnmj5/w1600-h1600-p-k-no-nu/1002123886.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dy1Op9D0frPpaZsy5vdA1TxfTyd6lifnQNpGbPDNYF9Ylk3h1xd3eOzkibgpt-Lue1Vj9oUE3b65EzyuZSw0HJVpE-gRMw28P7EFHde-9d1KTqqAbOc2-c0l4k4XscStbuV2Vq2&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 2
   },
   {
     "page_url": "https://www.picview.online/2026/07/08_14.html",
@@ -29,137 +27,196 @@
     "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjA_aQXiQIwjS1VBHpS7Hx4DD2p1XSJxJB1Z271Nf3VvDuYIbuEJSokPP3IcoI8dt2sfKuK9BGFgXk3SCdrjJnaNE-HcKKS2MICGKjz6MmWXOHyMEK_6cJJMMp3czliyMnEEyIOpzFe_3YBi3ieSIt1P0kTlbrMlDMdVLzYAmmO8yOyid0waOG2EFpi9fvL/w1600-h1600-p-k-no-nu/1002132129.jpg",
     "direct_urls": [],
     "embed_urls": [
-      "https://www.blogger.com/video.g?token=AD6v5dwv6uBodJl6zsBpdVIMG0bF-InZH6tXh4k-6jvPztIzTg6LY08Ed8d6G1_fQGLQew5dqJ3mtXiHWRuik5YISkI0w9V90PqlFLRCcgDgS_9Y4XF9d-BzuocGQdQCm3cOB1c-gDc&origin=www.picview.online",
+      "https://www.blogger.com/video.g?token=AD6v5dxBvK_Or25rMjjE31V0dVey5uYeW4u9an8kkd-q-HikWboW9LdXy8W-O5n0PcDj_EWz5QsjHtgzyBe1xS9dEHpSiNnEg6RW3uIpLm5QcprcvHOeseFgVsoIgAAj_-sKki6qOLU&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 3
+  },
+  {
+    "page_url": "https://www.picview.online/2026/07/09_28.html",
+    "title": "সাত পাকে বাঁধা 09 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsYD_Kd7JeqCLr_QL95vMDZzrPApfy9mGmz9NZA7RFIV_HVd7fCfnjKQcXFxr1-M36aj7VwvTY6E-Rz2Ym-NpT_u1dCE_FAliq7kytG0gX80Ecx6_oRU8qZA7-TfhpSHQ7wHnu_QnYzB7_dc2FKvu45xBJH8JLA8a0-FzDvD8EiWvJlQmp9mpMf5j2nAts/w1600-h1600-p-k-no-nu/1002140509.jpg",
+    "direct_urls": [],
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dy8ND8H0wpPKF1oF7ekJUNTSlXtQd3IFiWVck1VMNmCb9WyZLkR5txIP9RAzE0_x-fpf4-o5iFVUy-m7ZBjL8iNuI2aGn0SK_JVVmTBI9_lFjHB6su482mivV1-4bIJeyfnqZY&origin=www.picview.online",
       "https://www.youtube.com/embed/$1"
     ],
     "number": 4
   },
   {
-    "number": 5,
-    "page_url": "https://www.picview.online/2026/07/09_28.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
-    "direct_urls": [],
-    "embed_urls": []
-  },
-  {
-    "number": 6,
     "page_url": "https://www.picview.online/2026/07/10_2.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 10 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDoBzpjR3oDT-ZxKiT-9EqzIlhOeEiJMx3GFJ1auKHinJUHWOSUpNfITamAvB4nqrRdb2lUWONE0nOqLRZf6veZwss_QkfsEworUgUboHxAMIVO8GJFRGTWvJe8gwM0e5oV34MtOtRR0DctwuDIUDzRYORPvvGHeNM7NBpwPJQYi-_zPCxjwvHNCOEtSwM/w1600-h1600-p-k-no-nu/1002221379.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dwM6vjVTx1D8N8sKFJlXStbJcwBT8Wv_H59saQL89lXHhv6OTjtPZ7BaYQkE1x5BZc0DLTHTasY91-hRR9uK1-kWq98vFU5wILicLMU-5dV8jXl5OYLRU-PEnZFGzO0dz9milQ&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 5
   },
   {
-    "number": 7,
     "page_url": "https://www.picview.online/2026/07/11_4.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 11 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvaWLuvSA5lLQLfXfsOEVa91wg0WsFkMire19H9q2kzQgaasTJMTTiCglnW1u7D5KdO2qyL2wIW1AsPXG3BlOAfyee2nusr-qKt8MK1_zDRpkw1wL89GUtCdt6WQAFqoTsJNSCLjN5A7NR6LqxLwbwWZt-h1Shh_-ZGAp4dblczXHnvRrH7zf-SGypqbD6/w1600-h1600-p-k-no-nu/1002246037.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dzogwuaT_w7OhxEo6DpAs9KBpGC6HKU5fWvqWVjwMNOTrFOAoE2uQ0NoldZPY5oB-6qt87FckDHGlzUSC9RSG5_Z0DgElYffVj-0Etf_3aeHRLyOhmauRseIJBiUHgGn916592H&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 6
   },
   {
-    "number": 8,
     "page_url": "https://www.picview.online/2026/07/12_79.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 12 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuX52CUjj38wCa7-sHIQEuqkhoGhvlm5ydu4AklsA63XtBehEL-VC5wuy2aHkcnfBPaaiJw79k91aZ1xV8ubIDRgI9Co0C9Nn9yioAfbcU2IJ8SXBmGyPtybtWHdCeqUMvWr_BzJE9p8W2J9Ltz_x9bLLjxiWBOK7Nre27ZiHXTLPa54-VrZG9GWZjXS_X/w1600-h1600-p-k-no-nu/1002254478.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dz8-AcNir8N3bvNLri_Soj8KRjZs0t7urKhJS1oMCEy13rAR1exIhrZVSDPAqFvPEapIgdOdwjmf3BEjCrnkX5xy7NMG9RvkYws5BLudPNa0SZ1usV-oLRzSiyAO37H5nXZfSY&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 7
   },
   {
-    "number": 9,
     "page_url": "https://www.picview.online/2026/07/13_2.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 13 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjoPd0rm2_awGWaAsJ8rBmcS1o7dI5JGnIqoqttLTdzC7eqWtBQf5UnWSCZFTTQdrB2jMkB8br7XZ7tw2aGCbVF6DnfBkl-kbVsDZZtYxvnQcXWnYkUSfqViV5cG2dCvt8g-g93DBYJgHjtJO0Fx1rX7pyVPkYkymoC5VnMTpHtgKGvQoHnVQPINqP8QKCA/w1600-h1600-p-k-no-nu/1002262998.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dzHWlebh-tvJjbP83S9mcL6c4FurWosCRZ9Ksmc3QNxAPjyTQzB1k5EXhnI_5zx3Zicgj97lETZMTROpiEkMwkcMsQWLqhcO-Lr6fPQtJ9s0Vj7CC9gpw_mJJdd13XiC66XvrQ&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 8
   },
   {
-    "number": 10,
     "page_url": "https://www.picview.online/2026/07/14_51.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 14 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhbZN_32hF0qJh0m4I_vgpcYeTAl6xvM7M9vwdV4qyMMDVZN4Uagpr1mjjxFYY9Nv9Jo94H64IfbWGEX4UJgneM2zcT6wBF01XM24814CcnzN5ufA_4tgeaULmv_5yGDqaxBJiez5viR8rUA-r975fV2Que3jFDiG6wC8fKcB34tJb_RGxda2LQCanL60QX/w1600-h1600-p-k-no-nu/1002271411.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dym8E2wfVGRbRpz0iO2xjVHU9HpM_UC0CFiksrvse2yOpx8oDJoqTI2d9MKaA3hEn14T8MPnMupR0ETuCHjC9KpOL8nwy6ATNsypBzYN3cyeQiVUfKPivbL5wiQqX2ofNbU2wv0&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 9
   },
   {
-    "number": 11,
     "page_url": "https://www.picview.online/2026/07/15_30.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 15 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjp2TSRHP8E3n39qt3npNGizV8RnbtXJL6Q0x84c8cObcLMqzX87miK5emsgCt2z3g3HtCjTU4X-r382A4JlIovwAOLRS94oFAfExBYhzIC1Q2VwYsXzZkqeyUsvB1tER4stiLIhyphenhyphentKou16_ABoXF88XeTUWmSHFOnADlo7W_dZw0PqUscEKrICyakGaM7x/w1600-h1600-p-k-no-nu/1002279826.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dyuJzKQKdKvW036yciVUnbLg17MYp7jCHIrGxnc_YryCMJxenErCgHpoO8hH0baH60i3X7jeYLUCCO8n1Yh-YRORH-p6_5KZu4CeCwFjkVCfi2C-363sz9sFHv92EiNYu40640&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 10
   },
   {
-    "number": 12,
     "page_url": "https://www.picview.online/2026/07/16_3.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 16 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhriUklpu-J2QkK9NsGwchBBgiRmgx_2wmIFDeGtklIfq4tvc6bTQ2D7YnyRBcbpSVmob6Y47sOzpB5TWJE4US5994O8YnRYcSAzROEMt6MKwiH86x_4msNjrCsTtZjnjntLwFQPAwNRsZ7C1vNkaI9nMy3RfXoiE8ZnY13RpyejnYLtjNb4qon4Kl5xvZ7/w1600-h1600-p-k-no-nu/1002288301.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dy10Yw34MuPItB-HxRhdiHom_WWoB3D5Ol3upHGzdDMkEDr3wlgjdI4D7oe4uvMDwsilLPNQ6ePwMb2H7poAaQq-tFRAscu7UxYngcOECozp4TBodUKWiktydAJdW7d8a3jMmfF&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 11
   },
   {
-    "number": 13,
     "page_url": "https://www.picview.online/2026/07/17_43.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 17 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYRpyrPXkq4ZaLGDHClq4lxr-A35HdRcIv758UtM9uGptWUU2QoOOdKDfLeQbnkzdFMXMpprONyf-a0hB9tx8KAubL11HlhJ3vm32b3SVdGawa0N6kv4XG1OguPebQt2Q7vVUtSkuLmNFs_65K50Dib8n4UnAhiCYzdHP4pDJh1D8xhzyyVDCGVbBmIx-w/w1600-h1600-p-k-no-nu/1002296769.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://rumble.com/embed/v7aogvi/?pub=4oiwau",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 12
   },
   {
-    "number": 14,
     "page_url": "https://www.picview.online/2026/07/18_39.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 18 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXiEfVS_cLg3VRQVN43-FHBFAkjoXEdmkUKXB3v4iEU_OHprbMckDKAoWrq2tSpV9oZUsLREG5TZySpM84ECq9AqB0gSc6FNX-AX1r0uYL3Zi_JjR0X7e1bZmdsHw-jm97ONSVHrJIxu2veC-DgnGhkgKp2isKs4TJgQmTbYib1TRrMMLxZuP1yorVCjwU/w1600-h1600-p-k-no-nu/1002305207.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dzVwgacH5HJwz8i3RCaUgTWfdhdJ2LYhMX-qrgvED5gbu6SNHJVUctcfNRjy_UYlLBsZmz_A5yshwzx_g7KdGf_1pepSRM3xNwpC0QDhCjJGVexAd_jh4ADUWjrZf18b3YUq1w&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 13
   },
   {
-    "number": 15,
     "page_url": "https://www.picview.online/2026/07/19_98.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 19 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhUUEDdmgeA3NUOim53xfHfDMbeyIFPcOLEwRtqHRzrOiuh609DpRT76v_79sF_iSyQ8FzwFp8gnQArQ26WCq0Gy_u3i6iEGuFpYSBCrangvlORpqNUkhbKa7vDeRpyp7MV-S4r9VlilMKY_AkNJxUl66vPvRmgEW5251usm_otuE2uWAbjWjIp3pqQpJbS/w1600-h1600-p-k-no-nu/1002322060.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dzzefTPFaUQjyNvnaZsQ-R1ESfGY81tNCZeuBtssBnG7zgr3SB7-4EiDEkli0H3iqrCYj0P41fxAZCVhJvY6ZMH45eGD_x3LD6rWrrE4pm8r7u959a871LVOhW0dcJ_mtNC9vw&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 14
   },
   {
-    "number": 16,
     "page_url": "https://www.picview.online/2026/07/20_67.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 20 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBlYuUIwqtSn3cB8kDo35swCCUj5FLFcTKRP0u-pw1IaIJXr6q8j0lNNglM9FrV5EMjfxZ2aOtCxr3ppurJLlxne6gbCXQnU4FQjP7gAygdnNyt41A9zTxzx73hrI793KrZxwuBplFOIzqUr-EuOV_BxeUAHgz4CfH-FE6_m5oF_U720ZzWs9vLeiIalcQ/w1600-h1600-p-k-no-nu/1002322178.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dxAq113d2c2y7g5VPbDxV-GWq1mrqF9aCzi5sKaXvFI-OWKXlMj4zH_d3MZnKmCantQhEgDpeqzrEm4RsJOKaRoAT2od3o5_wEEWQvrm0LCnSsc15F3bZfFF9LuTwwegDhRrmrl&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 15
   },
   {
-    "number": 17,
     "page_url": "https://www.picview.online/2026/07/21_3.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 21 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPQEj3748w0fUqeGxhlJ69gHuc-wvZHRZKCNWq2JsW83E7k7DrLZFfvIb2ZHn1NgqYYG4YbKfG5DCUrIsSk26N9WuJupn7IO9O5jIIpoguDSLKs-S49n0uRyfb3ScRTnjf8aCyQ-0mvrZbCLpPbBNQyMclQ3tMdo69fB_gz9ttpnwiazd0PiRzbY4sB6xa/w1600-h1600-p-k-no-nu/1002330772.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dxvjiGlZSjOSf_PnKwyv6pLfNXWpQl2iW_oS4DViWub3Ojn8Vmf8rpwr6eSEZ6HFOyJbxo71VlBtm9OTDn1vlcfG7HAkR9kiwXdiF8azLYazBp8RqaSCTExpp5jFRDXhIXIWpO1&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 16
   },
   {
-    "number": 18,
     "page_url": "https://www.picview.online/2026/07/22_94.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 22 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2d-1Q__BKKm982X3z3omb07BhjcK2gRHkZVEscvj0QTh4HwaN7iR1eOQK2lsKPEPXcqAdVqIyTLJpowl3kZMNSJnxk1chgDgUSCho8C5GxfZoE13C-qh2GH8rdAJ9jjbNIm6e5azYwm32I3oWc4CsGRCg1MmXrrTfSZQCzFDoKVW81mFNlM5kLhezU7OG/w1600-h1600-p-k-no-nu/1002339382.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dyZ_h7okKliI3WgyI5F1luDmMCEHNRxTiz5ncBMYApK8dAazbaV579PdyqgJkq5JIsWrKpHO3m3-qYxDw8xj8JcDV2c2o1wFXAaMmrZQmeOGpbcHLIM7tXkUSKUwz2x4UrKEdvp&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 17
   },
   {
-    "number": 19,
     "page_url": "https://www.picview.online/2026/07/23_91.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 23 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEidn82x36KDGB68TjsuG0Tq56wyBtjCaOGzvjLxg4tWc_rK6O2hoY-4SCuwBjrGRfmQXy3Zp_IMVRh-JycXwwmcdXfpR0i2oa8ZpwzgtlXCAQd-GFyKJAbcTt0UIDk2EcWJd4R4uLiFZq6_GjBjkrQW4STYeA4rdkHlQkP25AQLBQ6vlgnUTkDTiTUHoh-D/w1600-h1600-p-k-no-nu/IMG_20260723_181244.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dyrTbTgenUczOxo2HXdA5PP4-22vyvrKB1LAFhJmqlOblkjSkNR1RZPnEyxUd4wWqF0hqqE-YOSwiLeHY_C5VURDh376b8Hkvs2kaUFAZO0kSCJzfWc9ZqcBs3BeRGgJpb6ypA&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 18
   },
   {
-    "number": 20,
     "page_url": "https://www.picview.online/2026/07/24_35.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 24 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcCUQ72i_NLd4JobcRat2WMp2fHjp8m7Ouh3mXg2uSeCMPgx0BZ9aYzOz7hseEe30s8DPLqtmPIg4m7kw-aHMNzXAeB5apfMTedEDE98t9kxJTCFDvqWP8wo1in0od1oVpv1VOdZejkiTiREyCAsu2onDtKvpaHIeP0Brwov1VTS2nryzvRUu-bt0ub9Ub/w1600-h1600-p-k-no-nu/1002356739.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dyjuZ4K4364oVY7ID-6xkPLKQfFs0Vaho9e0YARAeI9KhXBJ9GkkuTRI1l2m1YSEFb_wXLQJ3_U6taK5mKg_ru4-LAE8WDUG30pyy19nr3wX-h9ZYIEH9KplJadn3Z_beuJfpE&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 19
+  },
+  {
+    "page_url": "https://www.picview.online/2026/07/25_1.html",
+    "title": "সাত পাকে বাঁধা 25 জুলাই | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgTbCQBDnU2I06X1UEv6lpiwBjoFXQnRaF4DdDWtrYLMhhoj4RtYUuwHBqOP-zvjzdEWpZspxQTddq5lZT_znCDYVEHHsvuVo_HdgsQOtPsh_Ta57eY7itNKuSxbSXrotSRS3l9y8-ipj-yNDFFDQgwOazi261R1cBrtgnxip_gAV71OrG-8y6Y2JHqxNSA/w1600-h1600-p-k-no-nu/1002365618.jpg",
+    "direct_urls": [],
+    "embed_urls": [
+      "https://rumble.com/embed/v7b26cw/?pub=4oiwau",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 20
   }
 ]
