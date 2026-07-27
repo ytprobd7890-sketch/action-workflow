@@ -1,0 +1,54 @@
+name: 🔄 Boss Kobir - Auto Playlist Splitter & Sorter
+
+on:
+  # 1. Runs automatically on every push to the main branch
+  push:
+    branches:
+      - main
+  # 2. Runs automatically every 12 hours via cron job to keep playlists updated 24/7!
+  schedule:
+    - cron: '0 */12 * * *'
+  # 3. Allows manual trigger from the GitHub Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-split:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout your repository code
+    - name: 📂 Checkout Repository
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Python environment
+    - name: 🐍 Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    # Step 3: Install requests dependency
+    - name: 📦 Install Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    # Step 4: Run the pro-splitter and sorter python script
+    - name: 🚀 Run Category Splitter & Sorter
+      run: python split_playlist.py
+      env:
+        # Pass your live Railway playlist URL as an environment variable
+        RAILWAY_PLAYLIST_URL: "https://tatatv.kobir26.qzz.io/playlist.php?token=kobir26tata27"
+
+    # Step 5: Automatically commit and push the newly generated sorted M3U files back to GitHub!
+    - name: 💾 Commit & Push Split Playlists
+      run: |
+        git config --global user.name "GitHub Action Bot"
+        git config --global user.email "actions@github.com"
+        git add playlists/
+        
+        # Commit only if there are changes
+        git diff-index --quiet HEAD || git commit -m "Auto-update: Split & Sorted M3U Playlists [Cron Run]"
+        git push origin main
