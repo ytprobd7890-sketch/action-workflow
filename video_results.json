@@ -1,10 +1,24 @@
 [
   {
-    "number": 1,
     "page_url": "https://www.picview.online/2025/09/09_0359236448.html",
-    "error": "HTTP Error 429: Too Many Requests",
-    "title": "",
+    "title": "সাত পাকে বাঁধা 18 অক্টোবর | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSyrYQmZZi171SM4EgVGbYtYGsnNmdPazpCdY0WXLPc4x2W7kEZI8G4xJbyjMgPfFoI4eTW_2xZHn1ec6TVFhriqHIYLW3mcZSiSu0yRIYtTsnTNiI-hXVIfctIsCCVIhfAX4Hb_E-HJSd1Y-XGiIJHYquAPpPCOthtR_fEU3oX7TAWNOkmCzclNHHM_5T/w1600-h1600-p-k-no-nu/IMG_20261018_175309_714.jpg",
     "direct_urls": [],
-    "embed_urls": []
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dzLHGiNQJgDDD0nD4NjmarHtE7VzoWEQoqtahvoxpybbUgZa2_5tT0LZKGXCVxB_muOWmZbeVSImz0EagRFVvcFb6AtQrlhHryzx0oIHM_veChBokv0CUeTgdbAR3YjXPcVNA&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 1
+  },
+  {
+    "page_url": "https://www.picview.online/2026/10/19_04.html",
+    "title": "সাত পাকে বাঁধা 19 অক্টোবর | সাত পাকে বাঁধা আজকের পর্ব",
+    "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4bNP9mG4ZgiB6tQksKEEnUTI-BhM1c3Y7eXoeyE4y7Weea_zZUiuHaModx3SU0NbDgwhBq9-Hfu_kihGbBCCKYbcpXicc83sA_Og_CQT2rWUO0T2KfjlC7a6gwDy90N0PZ_whSMS-MOjzslnX6chSdyTXQE1XNHCV7Oo5_qeQ3_O87onMhkQh6LeE2ns/w1600-h1600-p-k-no-nu/1002908770.jpg",
+    "direct_urls": [],
+    "embed_urls": [
+      "https://www.blogger.com/video.g?token=AD6v5dyQgqKyBtsPPI0sEM-DxnldG7Cha6Q8yfShonpxqXfiWYdC0YW6VPnFncXWmnFsEhkIe17AzSxmHkP6OXRPB5XsmflG7nppLRWW98Kvcm8YYPtdl7vSuu5p1HhY1vTn-aYeVcI&origin=www.picview.online",
+      "https://www.youtube.com/embed/$1"
+    ],
+    "number": 2
   }
 ]
